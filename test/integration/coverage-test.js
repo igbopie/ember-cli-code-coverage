@@ -1,8 +1,7 @@
 'use strict';
 
 var fs = require('fs-extra');
-var RSVP = require('rsvp');
-var remove = RSVP.denodeify(fs.remove);
+var removeSync = fs.removeSync;
 var runCommand = require('../helpers/run-command');
 var chai = require('chai');
 var expect = chai.expect;
@@ -14,14 +13,13 @@ chai.use(chaiFiles);
 
 describe('`ember test`', function() {
   beforeEach(function() {
-    return remove('coverage*');
+    removeSync('coverage');
   });
 
   afterEach(function() {
-    return RSVP.all([
-      remove('tests/dummy/config/coverage.js'),
-      remove('tests/dummy/app/routes/index.js')
-    ]);
+    removeSync('tests/dummy/config/coverage.js');
+    removeSync('tests/dummy/app/routes/index.js');
+    removeSync('coverage');
   });
 
   it('runs coverage when env var is set', function() {

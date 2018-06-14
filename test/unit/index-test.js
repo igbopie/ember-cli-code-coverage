@@ -1,8 +1,11 @@
 'use strict';
-
-var expect = require('chai').expect;
+var chai = require('chai');
 var sinon = require('sinon');
 var Index = require('../../index.js');
+
+var expect = chai.expect;
+chai.use(require('sinon-chai'));
+
 describe('index.js', function() {
   var sandbox;
 

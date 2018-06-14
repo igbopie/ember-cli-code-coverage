@@ -250,6 +250,8 @@ module.exports = {
     const options = appOptions['ember-cli-nacho-coverage'];
     if (!this.myConfig) {
       this.myConfig = config(this.project.configPath(), options);
+    } else {
+      this.myConfig = Object.assign({}, this.myConfig, options );
     }
     return this.myConfig;
   },
